@@ -12,19 +12,19 @@ $ sudo pacman -S gcc git dosfstools - arch-based
 step 2:
 download the project repository
 
-$ git clone https://github.com/Nick-cpp/tux
+$ git clone https://github.com/Nick-cpp/fflash
 
 step 3:
 compilation & installation
 
 
-$ cd tux/
+$ cd fflash/
 
-$ g++ -std=c++17 tux.cpp -o tux
+$ g++ -std=c++17 fflash.cpp -o fflash
 
-$ sudo install -Dm755 tux /usr/bin/tux
+$ sudo install -Dm755 fflash /usr/bin/fflash
 
 step 4:
 program launch
 
-$ tux
+$ fflash

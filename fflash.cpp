@@ -2,7 +2,6 @@
 #include <cstdlib>
 
 int main() {
-    std::cout << "FFLASH\n";
     system("lsblk");
     
     std::string name;

@@ -17,6 +17,8 @@ int main() {
     int operation;
     std::cin >> operation;
     
+    system(("sudo umount " + name + "* 2>/dev/null").c_str());
+    
     if (operation == 1) {
         std::cout << "\nSelect file system:\n";
         std::cout << "1. FAT32\n";
@@ -28,12 +30,10 @@ int main() {
         
         switch(fs_choice) {
             case 1:
-                system(("sudo umount " + name + "* 2>/dev/null").c_str());
                 system(("sudo mkfs.fat -F32 " + name + " -I").c_str());
                 std::cout << "Formatted as FAT32\n";
                 break;
             case 2:
-                system(("sudo umount " + name + "* 2>/dev/null").c_str());
                 system(("sudo mkfs.ext4 " + name).c_str());
                 std::cout << "Formatted as ext4\n";
                 break;

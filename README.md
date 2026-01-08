@@ -22,7 +22,7 @@ $ cd fflash/
 
 $ g++ -std=c++17 fflash.cpp -o fflash
 
-$ sudo install -Dm755 fflash /usr/bin/fflash
+$ sudo mv fflash /usr/bin/fflash
 ```
 step 4:
 program launch

@@ -14,7 +14,7 @@ compilation & installation
 ```
 $ cd fflash/
 
-$ hcc fflash.HC -o fflash
+$ hcc fflash.hc -o fflash
 
 # mv fflash /usr/bin/fflash
 ```

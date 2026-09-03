@@ -44,9 +44,9 @@ U0 Main()
   strcpy(name, "/dev/");
   strcat(name, name_input);
 
-  print("\nSelect operation:\n");
-  print("1. Format only\n");
-  print("2. Write image with formatting\n");
+  "\nSelect operation:\n";
+  "1. Format only\n";
+  "2. Write image with formatting\n";
   print("Enter choice (1-2): ");
   read_line(confirmation, 256);
   operation = atoi(confirmation);
@@ -57,21 +57,20 @@ U0 Main()
   system(cmd);
 
   if (operation == 1) {
-    print("\nSelect file system:\n");
-    print("1. FAT32\n");
-    print("2. ext4\n");
+    "\nSelect file system:\n";
+    "1. FAT32\n";
+    "2. ext4\n";
     print("Enter choice (1-2): ");
     read_line(confirmation, 256);
     fs_choice = atoi(confirmation);
 
     if (fs_choice != 1 && fs_choice != 2) {
-      print("Invalid choice!\n");
+      "Invalid choice!\n";
       return;
     }
 
-    print("\nWARNING: ALL DATA ON ");
-    print(name);
-    print(" WILL BE PERMANENTLY LOST!\nType 'yes' to confirm: ");
+    "\nWARNING: ALL DATA ON %s WILL BE PERMANENTLY LOST!\n", name;
+    print("Type 'yes' to confirm: ");
     read_line(confirmation, 256);
 
     if (confirmation[0] == 'y' || confirmation[0] == 'Y') {
@@ -81,43 +80,42 @@ U0 Main()
           strcat(cmd, name);
           strcat(cmd, " -I");
           system(cmd);
-          print("Formatted as FAT32\n");
+          "Formatted as FAT32\n";
           break;
         case 2:
           strcpy(cmd, "mkfs.ext4 ");
           strcat(cmd, name);
           system(cmd);
-          print("Formatted as ext4\n");
+          "Formatted as ext4\n";
           break;
       }
       system("sync");
     } else {
-      print("Operation cancelled.\n");
+      "Operation cancelled.\n";
     }
   }
   else if (operation == 2) {
     print("\nEnter the full path to image file: ");
     read_line(image_path, 512);
 
-    print("\nSelect file system for formatting before writing:\n");
-    print("1. FAT32\n");
-    print("2. ext4\n");
+    "\nSelect file system for formatting before writing:\n";
+    "1. FAT32\n";
+    "2. ext4\n";
     print("Enter choice (1-2): ");
     read_line(confirmation, 256);
     fs_choice = atoi(confirmation);
 
     if (fs_choice != 1 && fs_choice != 2) {
-      print("Invalid choice!\n");
+      "Invalid choice!\n";
       return;
     }
 
-    print("\nWARNING: ALL DATA ON ");
-    print(name);
-    print(" WILL BE PERMANENTLY LOST!\nType 'yes' to confirm: ");
+    "\nWARNING: ALL DATA ON %s WILL BE PERMANENTLY LOST!\n", name;
+    print("Type 'yes' to confirm: ");
     read_line(confirmation, 256);
 
     if (confirmation[0] == 'y' || confirmation[0] == 'Y') {
-      print("\nFormatting device...\n");
+      "\nFormatting device...\n";
       switch (fs_choice) {
         case 1:
           strcpy(cmd, "mkfs.fat -F32 ");
@@ -132,26 +130,24 @@ U0 Main()
           break;
       }
 
-      print("\nWriting image to device...\n");
+      "\nWriting image to device...\n";
       strcpy(cmd, "dd if=");
       strcat(cmd, image_path);
       strcat(cmd, " of=");
       strcat(cmd, name);
       strcat(cmd, " bs=4M status=progress oflag=sync");
       
-      print("Executing: ");
-      print(cmd);
-      print("\n");
+      "Executing: %s\n", cmd;
       system(cmd);
       
-      print("\nImage writing completed!\n");
+      "\nImage writing completed!\n";
       system("sync");
     } else {
-      print("Operation cancelled.\n");
+      "Operation cancelled.\n";
     }
   }
   else {
-    print("Invalid operation choice!\n");
+    "Invalid operation choice!\n";
   }
 }
 

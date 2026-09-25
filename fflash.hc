@@ -45,8 +45,8 @@ U0 Main()
   strcat(name, name_input);
 
   "\nSelect operation:\n";
-  "1. Format only\n";
-  "2. Write image with formatting\n";
+  "1. Format\n";
+  "2. Write image\n";
   print("Enter choice (1-2): ");
   read_line(confirmation, 256);
   operation = atoi(confirmation);
@@ -98,38 +98,11 @@ U0 Main()
     print("\nEnter the full path to image file: ");
     read_line(image_path, 512);
 
-    "\nSelect file system for formatting before writing:\n";
-    "1. FAT32\n";
-    "2. ext4\n";
-    print("Enter choice (1-2): ");
-    read_line(confirmation, 256);
-    fs_choice = atoi(confirmation);
-
-    if (fs_choice != 1 && fs_choice != 2) {
-      "Invalid choice!\n";
-      return;
-    }
-
     "\nWARNING: ALL DATA ON %s WILL BE PERMANENTLY LOST!\n", name;
     print("Type 'yes' to confirm: ");
     read_line(confirmation, 256);
 
     if (confirmation[0] == 'y' || confirmation[0] == 'Y') {
-      "\nFormatting device...\n";
-      switch (fs_choice) {
-        case 1:
-          strcpy(cmd, "mkfs.fat -F32 ");
-          strcat(cmd, name);
-          strcat(cmd, " -I");
-          system(cmd);
-          break;
-        case 2:
-          strcpy(cmd, "mkfs.ext4 ");
-          strcat(cmd, name);
-          system(cmd);
-          break;
-      }
-
       "\nWriting image to device...\n";
       strcpy(cmd, "dd if=");
       strcat(cmd, image_path);
